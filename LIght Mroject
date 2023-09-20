@@ -1,0 +1,90 @@
+import time
+from rainbowio import colorwheel
+import neopixel
+import board
+import random
+
+
+np = neopixel.NeoPixel(board.D2, 30, brightness=0.7, auto_write=False)
+white = (255, 255, 255)
+purple = (53, 7, 87)
+green = (77, 247, 64)
+blue = (150, 191, 255)
+
+
+'''
+Function: onebyone
+Description: light passes through the neopixels and changes one by one to a different color
+Parameters: it takes in the int of eah neopixel to chose the color
+Return value:It returns the color of the neopixel
+'''
+def onebyone():
+    for i in range(30):  
+        if i % 2 == 0:
+            np[i]= green
+        else:
+            np[i] = purple
+        np.show()
+        time.sleep(.10)
+        
+
+'''
+Function: Sparkle
+Description: Flashes the neopixel with a diferent color at a random pixel on each side
+Parameters: the parameter are the background color, and the two foreground colors
+Return value: It returns the color value tp the led
+'''
+def sparkle(foreground = green, background = purple, foreground2 = blue):
+    for i in range(30):
+        p = random.randint(1 , 14)
+        tp = random.randint(15,29)
+        np.fill(background)
+        np[p] = (foreground)
+        np[tp] = (foreground2)
+        time.sleep(.10)
+        np.show()
+
+'''
+Function: fade in
+Description: What the function does / how it works
+Parameters: list paramters along with the data type of each parameter
+Return value: if it returns something, what is it / what type of data it is.  If not, just put "none".
+'''
+def fade_in():
+    c
+    
+'''
+Function: fade out
+Description: What the function does / how it works
+Parameters: list paramters along with the data type of each parameter
+Return value: if it returns something, what is it / what type of data it is.  If not, just put "none".
+'''
+
+def fade_out():
+    c
+
+'''
+Function: chase
+Description: What the function does / how it works
+Parameters: list paramters along with the data type of each parameter
+Return value: if it returns something, what is it / what type of data it is.  If not, just put "none".
+'''
+def chase():
+    for i in range(30):
+        np.fill(green)
+        np.show()
+        time.sleep(0.05)  # Delay between each step of the chase
+        np[i] = purple
+        np.show()
+        time.sleep(0.05)  # Delay between each step of the chase
+        np[i] = blue
+        np.show()
+        time.sleep(0.05)  # Delay between each step of the chase
+
+while True:
+    np.fill(white)
+    onebyone()
+    sparkle()
+    chase()
+            
+        
